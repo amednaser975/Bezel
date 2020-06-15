@@ -5,7 +5,7 @@ $(".navbar").css({
       boxShadow: "none"
     });
 // Change Coloring Properties of Navbar On Scrolling
-$(window).scroll(function () {
+$(window).on('scroll',function () {
 
   if ($(this).scrollTop() >= 40) {
     $(".navbar").css({
@@ -19,7 +19,9 @@ $(window).scroll(function () {
     $('.navbar .navbar-nav li').css('paddingTop','.6rem');
     $('.navbar .navbar-nav li').css('paddingBottom','.6rem');
     $('.navbar .navbar-nav:last-child').css('border-left-color','rgba(0, 0, 0, 0.4)');
+  
   } else {
+    
     $(".navbar").css({
       backgroundColor: "transparent",
       boxShadow: "none"
@@ -54,4 +56,40 @@ $(window).scroll(function() {
 $("#back-to-top").click( function () {
 
   $('html, body').animate({scrollTop: 0}, 1000);
+})
+
+
+$('.nav-link').click(function () {
+
+  let linkHref = $(this).attr('href');
+  let sectionOffset = $(linkHref).offset().top;
+  $('html, body').animate({scrollTop: sectionOffset}, 1000);
+  var arr = document.getElementsByClassName('nav-item');
+  arr.forEach = Array.prototype.forEach;
+  arr.forEach(function (element) { 
+    element.firstElementChild.classList.remove('active2');
+  })
+  $(this).addClass('active2');
+})
+// Add Active link on Element when reaching its Section
+$(window).scroll( function () {
+
+  let hrefOfLink;
+
+    $('.block').each(function (index, element) {
+
+        hrefOfLink = $(element).attr('id');
+
+        if($(window).scrollTop() > $(this).offset().top - 400)
+        {
+          var arr = document.getElementsByClassName('nav-item');
+          arr.forEach = Array.prototype.forEach;
+          arr.forEach(function (element) { 
+            element.firstElementChild.classList.remove('active2');
+          })
+          $('.nav-item').removeClass('active2');
+          $(`a[href="#${hrefOfLink}"]`).addClass('active2');
+        }
+    })
+
 })
