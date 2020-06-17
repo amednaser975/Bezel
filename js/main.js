@@ -41,6 +41,16 @@ $(".navbar-toggler").click(function (){
   $(".navbar-brand,.navbar-collapse ul li a").css("color", "#333");
   $(".navbar-toggler span").css('backgroundColor','#333');
 })
+
+  // Toggler Button
+  
+  if(window.innerWidth < 992)
+  {
+    $('.nav-item').on('click', function () {
+
+      $('#navbarDefault').removeClass('show');
+    })
+  }
 // Scroll To Top button
 var scrollToTop = $("#back-to-top");
 var offsetTopAbout = $('#about').offset().top;
